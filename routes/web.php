@@ -18,23 +18,56 @@
 
 //Auth::routes();
 
+//データ処理全般、ルーティング(どこのURLと繋ぐか記述)
+
+
+use App\Http\Controllers\PostsController;
+use Illuminate\Support\Facades\Route;
+
+//auth認証
+
 
 //ログアウト中のページ
-Route::get('/login', 'Auth\LoginController@login');
+
+Route::get('/login', 'Auth\LoginController@login')->name('auth.login'); //ルートに命名
 Route::post('/login', 'Auth\LoginController@login');
 
-Route::get('/register', 'Auth\RegisterController@register');
+Route::get('/register', 'Auth\RegisterController@registerView');
 Route::post('/register', 'Auth\RegisterController@register');
 
 Route::get('/added', 'Auth\RegisterController@added');
 Route::post('/added', 'Auth\RegisterController@added');
 
 //ログイン中のページ
-Route::get('/top','PostsController@index');
+//ログインしているユーザーにしか表示しない
 
-Route::get('/profile','UsersController@profile');
+//Route::get('/', function () {
+//return view('login');
+//})->middleware('check');
 
-Route::get('/search','UsersController@index');
+//Route::get('/', function () {
+//return view('index');
+//});
 
-Route::get('/follow-list','PostsController@index');
-Route::get('/follower-list','PostsController@index');
+Route::group(['middleware' => 'auth'], function () {
+
+  //トップページへ
+  Route::get('/top', 'PostsController@index'); //取得する為
+  Route::post('/top', 'PostsController@index'); //指定のルートへ
+
+  //プロフィール編集ページへ
+  Route::get('/profile', 'UsersController@profile');
+
+  //ユーザー検索ページへ
+  Route::get('/search', 'UsersController@search');
+
+  Route::get('/follow-list', 'PostsController@followList');
+  Route::get('/follower-list', 'PostsController@followerList');
+
+  //ログアウト
+  Route::get('/logout', 'PostsController@logout');
+
+  //フォロー、フォロワーページへ
+  Route::get('/followList', 'FollowsController@followList');
+  Route::get('/followerList', 'FollowsController@followerList');
+});

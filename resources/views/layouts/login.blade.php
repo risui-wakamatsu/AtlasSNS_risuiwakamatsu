@@ -1,7 +1,10 @@
+<!--http://127.0.0.1:8000/top-->
+
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="utf-8" />
+    <meta charset="utf-8" />
     <!--IEブラウザ対策-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="ページの内容を表す文章" />
@@ -19,46 +22,53 @@
     <link rel="apple-touch-icon-precomposed" href="画像のURL" />
     <!--OGPタグ/twitterカード-->
 </head>
+
 <body>
     <header>
-        <div id = "head">
-        <h1><a><img src="images/logo.png"></a></h1>
-            <div id="">
-                <div id="">
-                    <p>〇〇さん<img src="images/arrow.png"></p>
-                <div>
-                <ul>
-                    <li><a href="/top">ホーム</a></li>
-                    <li><a href="/profile">プロフィール</a></li>
-                    <li><a href="/logout">ログアウト</a></li>
-                </ul>
-            </div>
+        <div id="head">
+            <h1><a href="/top"><img src="images/atlas.png" alt="Atlas"></a></h1> <!--アトラスロゴにヘッダーへ戻るリンクを設定-->
+            <p>{{Auth::user()->username}}さん<img src="images/icon1.png"></p>
+
+            <!--アコーディオンメニュー記述-->
+            <dl> <!--dt、dd要素をまとめるリスト-->
+                <dt class="accordion"> <!--用語-->
+                <dd class="accordion-contents"> <!--用語の定義・内容-->
+                    <ul>
+                        <li><a href="/top">HOME</a></li>
+                        <li><a href="/profile">プロフィール編集</a></li>
+                        <li><a href="/logout">ログアウト</a></li>
+                    </ul>
+                </dd>
+                </dt>
+            </dl>
+        </div>
         </div>
     </header>
     <div id="row">
         <div id="container">
             @yield('content')
-        </div >
+        </div>
         <div id="side-bar">
             <div id="confirm">
                 <p>〇〇さんの</p>
                 <div>
-                <p>フォロー数</p>
-                <p>〇〇名</p>
+                    <p>フォロー数</p>
+                    <p>〇〇名</p>
                 </div>
-                <p class="btn"><a href="">フォローリスト</a></p>
+                <p class="btn"><a href="/followList">フォローリスト</a></p>
                 <div>
-                <p>フォロワー数</p>
-                <p>〇〇名</p>
+                    <p>フォロワー数</p>
+                    <p>〇〇名</p>
                 </div>
-                <p class="btn"><a href="">フォロワーリスト</a></p>
+                <p class="btn"><a href="/followerList">フォロワーリスト</a></p>
             </div>
-            <p class="btn"><a href="">ユーザー検索</a></p>
+            <p class="btn"><a href="/search">ユーザー検索</a></p>
         </div>
     </div>
     <footer>
     </footer>
-    <script src="JavaScriptファイルのURL"></script>
-    <script src="JavaScriptファイルのURL"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="js/script.js"></script>
 </body>
+
 </html>

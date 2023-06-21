@@ -1,8 +1,10 @@
+<!--ログイン画面-->
+
 @extends('layouts.logout')
 
 @section('content')
 <!-- 適切なURLを入力してください -->
-{!! Form::open(['url' => '/〇〇']) !!}
+{!! Form::open(['url' => '/top']) !!}
 
 <p>AtlasSNSへようこそ</p>
 

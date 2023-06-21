@@ -4,6 +4,8 @@ namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 
+//PostsControllerに記述のmiddleware('auth')の処理内容が記述されている
+
 class Authenticate extends Middleware
 {
     /**
@@ -14,8 +16,8 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
-        if (! $request->expectsJson()) {
-            return route('login');
+        if (!$request->expectsJson()) {
+            return route('auth.login');
         }
     }
 }

@@ -1,8 +1,21 @@
+<!--ユーザー登録画面-->
+
 @extends('layouts.logout')
 
 @section('content')
-<!-- 適切なURLを入力してください -->
-{!! Form::open(['url' => '/〇〇']) !!}
+
+<!--バリデーション　エラーメッセージ表示-->
+@if($errors->any())
+<div class="register-error">
+  <ul>
+    @foreach($errors->all() as $error)
+    <li>{{$error}}</li>
+    @endforeach
+  </ul>
+</div>
+@endif
+
+{!! Form::open(['url' => '/register']) !!} <!--ルーティング(web.php)に記載されている登録完了ページのページのクラスへ-->
 
 <h2>新規ユーザー登録</h2>
 

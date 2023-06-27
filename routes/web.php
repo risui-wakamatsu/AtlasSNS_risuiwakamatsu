@@ -22,7 +22,8 @@
 
 
 use App\Http\Controllers\PostsController;
-use Illuminate\Support\Facades\Route;
+//use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 //auth認証
 
@@ -39,7 +40,7 @@ Route::get('/added', 'Auth\RegisterController@added');
 Route::post('/added', 'Auth\RegisterController@added');
 
 //ログイン中のページ
-//ログインしているユーザーにしか表示しない
+
 
 //Route::get('/', function () {
 //return view('login');
@@ -50,10 +51,11 @@ Route::post('/added', 'Auth\RegisterController@added');
 //});
 
 Route::group(['middleware' => 'auth'], function () {
+  //ログインしているユーザーにしか表示しない
 
   //トップページへ
-  Route::get('/top', 'PostsController@index'); //取得する為
-  Route::post('/top', 'PostsController@index'); //指定のルートへ
+  Route::get('/top', 'PostsController@indexName'); //取得する為
+  Route::post('/top', 'PostsController@indexName'); //指定のルートへ
 
   //プロフィール編集ページへ
   Route::get('/profile', 'UsersController@profile');
@@ -70,4 +72,8 @@ Route::group(['middleware' => 'auth'], function () {
   //フォロー、フォロワーページへ
   Route::get('/followList', 'FollowsController@followList');
   Route::get('/followerList', 'FollowsController@followerList');
+
+  //投稿の登録処理機能
+  Route::get('/top', 'PostsController@indexPost'); //表示
+  Route::post('/top', 'PostsController@postsCreate'); //登録
 });

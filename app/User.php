@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model; //追加
 
 class User extends Authenticatable
 {
@@ -26,4 +27,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function posts() //リレーション(Postテーブルと結合)定義
+    {
+        return $this->belongsTo('App\Post'); //belongsTo：1対多の「1」側はbelongToメソッド
+        //投稿は1人のユーザーしか登録できない
+    }
 }

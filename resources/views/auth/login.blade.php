@@ -4,7 +4,7 @@
 
 @section('content')
 <!-- 適切なURLを入力してください -->
-{!! Form::open(['url' => '/top']) !!}
+{!! Form::open(['url' => '/login']) !!} <!--URLはログイン後のページではなく、middlewareを通るためにログインするページにする-->
 
 <p>AtlasSNSへようこそ</p>
 

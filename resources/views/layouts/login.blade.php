@@ -21,26 +21,36 @@
     <!--iphoneのアプリアイコン指定-->
     <link rel="apple-touch-icon-precomposed" href="画像のURL" />
     <!--OGPタグ/twitterカード-->
+
+    <!--ーjQuery-->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="js/script.js"></script>
+    </body>
 </head>
 
 <body>
     <header>
         <div id="head">
-            <h1><a href="/top"><img src="images/atlas.png" alt="Atlas"></a></h1> <!--アトラスロゴにヘッダーへ戻るリンクを設定-->
-            <p>{{Auth::user()->username}}さん<img src="images/icon1.png"></p>
-
+            <div class="header-link">
+                <h1><a href="/top"><img src="images/atlas.png" alt="Atlas"></a></h1> <!--アトラスロゴにヘッダーへ戻るリンクを設定-->
+            </div>
+            <div class="user">
+                <p>{{Auth::user()->username}}さん<img src="images/icon1.png"></p>
+            </div>
             <!--アコーディオンメニュー記述-->
-            <dl> <!--dt、dd要素をまとめるリスト-->
-                <dt class="accordion"> <!--用語-->
-                <dd class="accordion-contents"> <!--用語の定義・内容-->
-                    <ul>
-                        <li><a href="/top">HOME</a></li>
-                        <li><a href="/profile">プロフィール編集</a></li>
-                        <li><a href="/logout">ログアウト</a></li>
-                    </ul>
-                </dd>
-                </dt>
-            </dl>
+            <div class="menu">
+                <dl> <!--dt、dd要素をまとめるリスト-->
+                    <dt class="accordion"> <!--用語-->
+                    <dd class="accordion-contents"> <!--用語の定義・内容-->
+                        <ul>
+                            <li><a href="/top">HOME</a></li>
+                            <li><a href="/profile">プロフィール編集</a></li>
+                            <li><a href="/logout">ログアウト</a></li>
+                        </ul>
+                    </dd>
+                    </dt>
+                </dl>
+            </div>
         </div>
         </div>
     </header>
@@ -67,8 +77,5 @@
     </div>
     <footer>
     </footer>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="js/script.js"></script>
-</body>
 
 </html>

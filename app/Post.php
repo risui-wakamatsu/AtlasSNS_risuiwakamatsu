@@ -13,7 +13,7 @@ class Post extends Model
 
     public function user() //リレーション(Userテーブルと結合)定義
     {
-        return $this->hasMany('App\User'); //hasMany：1対多の「多」側はhasManyメソッド
-        //1人のユーザーに対して投稿を複数登録できる
+        return $this->belongsTo('App\User'); //belongsTo：1対多の「1」側はbelongsToメソッド
+        //1人で複数の投稿ができる
     }
 }

@@ -30,7 +30,21 @@ class User extends Authenticatable
 
     public function posts() //リレーション(Postテーブルと結合)定義
     {
-        return $this->belongsTo('App\Post'); //belongsTo：1対多の「1」側はbelongToメソッド
-        //投稿は1人のユーザーしか登録できない
+        return $this->hasMany('App\Post'); //hasMany：1対多の「多」側はhasManyメソッド
+        //1人のユーザーに対して複数の投稿ができる
     }
+
+    public function follow() //フォロワー→フォローへ
+    {
+        return $this->BelongsToMany('App/User', 'follows', 'following_id', 'followed_id');
+    }
+
+    public function follower() //フォロー→フォロワーへ
+    {
+        return $this->belongsToMany('App/User', 'follows', 'followed_id', 'following_id');
+    }
+    //第一引数：使用するモデル
+    //第二引数：使用するテーブル
+    //第三引数：リレーションを定義しているモデルの外部キー
+    //第四引数：結合するモデルの外部キー
 }

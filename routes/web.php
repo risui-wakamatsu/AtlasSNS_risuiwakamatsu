@@ -54,8 +54,8 @@ Route::group(['middleware' => 'auth'], function () {
   //ログインしているユーザーにしか表示しない
 
   //トップページへ
-  Route::get('/top', 'PostsController@indexName'); //取得する為
-  Route::post('/top', 'PostsController@indexName'); //指定のルートへ
+  Route::get('/top', 'PostsController@index'); //取得する為
+  Route::post('/top', 'PostsController@index'); //指定のルートへ
 
   //プロフィール編集ページへ
   Route::get('/profile', 'UsersController@profile');
@@ -74,6 +74,18 @@ Route::group(['middleware' => 'auth'], function () {
   Route::get('/followerList', 'FollowsController@followerList');
 
   //投稿の登録処理機能
-  Route::get('/top', 'PostsController@indexPost'); //表示
-  Route::post('/top', 'PostsController@postsCreate'); //登録
+  Route::post('/post/create', 'PostsController@postCreate'); //登録するためのルーティング
+
+  //投稿の編集機能
+  Route::get('/post/{id}/update-post', 'PostsController@updateForm');
+  //編集画面へ
+  //GETで送られるパラメータを{変数名}で受け取る
+  Route::post('/post/update', 'PostsController@update'); //更新後の表示
+
+  //削除機能
+  Route::get('/post/{id}/delete', 'PostsController@delete');
+  //Route::post('/top', 'PostsController@delete');
+
+  //検索機能
+  Route::post('/search', 'UsersController@search');
 });

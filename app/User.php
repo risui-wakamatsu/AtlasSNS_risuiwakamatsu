@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'mail', 'password',
+        'username', 'mail', 'password', 'images', 'following_id', 'followed_id'
     ];
 
     /**
@@ -34,17 +34,42 @@ class User extends Authenticatable
         //1人のユーザーに対して複数の投稿ができる
     }
 
-    public function follow() //フォロワー→フォローへ
+    //フォロー機能　リレーション
+    public function following() //このユーザーがフォローしている人を取得
     {
-        return $this->BelongsToMany('App/User', 'follows', 'following_id', 'followed_id');
+        return $this->belongsToMany(User::class, 'follows', 'following_id', 'followed_id')->withTimestamps();
+        //(使用するモデル,使用するテーブル,どのカラムが,どのカラムを)フォロー(following)しているのか
     }
 
-    public function follower() //フォロー→フォロワーへ
+    public function followed() //このユーザーをフォローしている人を取得
     {
-        return $this->belongsToMany('App/User', 'follows', 'followed_id', 'following_id');
+        return $this->belongsToMany(User::class, 'follows', 'followed_id', 'following_id')->withTimestamps();
+        //(使用するモデル,使用するテーブル,どのカラムが,どのカラムに)フォロー(followed)されているのか
     }
-    //第一引数：使用するモデル
-    //第二引数：使用するテーブル
-    //第三引数：リレーションを定義しているモデルの外部キー
-    //第四引数：結合するモデルの外部キー
+
+    //フォローする
+    public function follow(Int $user_id) //INT:変数を正数に
+    {
+        return $this->follows()->attach($user_id); //attach:紐付け　followテーブルとuser_id紐付け
+    }
+
+    //フォロー解除する
+    public function unfollow(INT $user_id) //INT:変数を正数に
+    {
+        return $this->follows()->detach($user_id); //detach:紐付け解除　followテーブルとuser_id紐付け解除
+    }
+
+    //フォローしているか
+    public function isFollowing(INT $user_id)
+    {
+        return (bool) $this->follows()->where('followed_id', $user_id)->first(['id']); //first:最初のレコードを返す、単一のレコードを取得する
+        //boolean:真偽の値を表す　trueとfalseの2種類しか値にない
+    }
+
+    //フォローされているか
+    public function isFollowed(INT $user_id)
+    {
+        return (bool) $this->follows()->where('following_id', $user_id)->first(['id']); //first:最初のレコードを返す、単一のレコードを取得する
+        //boolean:真偽の値を表す　trueとfalseの2種類しか値にない
+    }
 }

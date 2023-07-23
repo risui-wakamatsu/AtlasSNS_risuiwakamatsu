@@ -15,8 +15,8 @@ class Follows extends Migration
     {
         Schema::create('follows', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('following_id', 11);
-            $table->integer('followed_id', 11);
+            $table->integer('following_id', 11); //フォローした人
+            $table->integer('followed_id', 11); //フォローされた人
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update current_timestamp'));
         });

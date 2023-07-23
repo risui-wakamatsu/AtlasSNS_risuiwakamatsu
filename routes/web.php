@@ -88,4 +88,9 @@ Route::group(['middleware' => 'auth'], function () {
 
   //検索機能
   Route::post('/search', 'UsersController@search');
+
+  //フォロー機能
+  Route::post('users/{user}/follow', 'UserController@follow')->name('follow'); //viewでrouteへルパによってルーティングの表示をさせる
+  //フォロー解除機能
+  Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow'); //viewでrouteへルパによってルーティングの表示をさせる
 });

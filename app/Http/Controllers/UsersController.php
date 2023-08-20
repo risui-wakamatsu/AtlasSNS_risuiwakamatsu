@@ -30,11 +30,12 @@ class UsersController extends Controller
     }
 
     //フォロー機能
-    public function follow(User $user)
+    public function follow(User $user) //$user→followedの中身に入る
     {
-        $user = Auth::user();
+        //ddd($user);
+        $following = Auth::user(); //Authでusersテーブルからデータ取得
         $follower = auth()->user(); //フォローしているか？
-        $is_following = $follower->isFollowing($user->is); //isFollowing:ユーザーが特定のユーザーをフォロー中か返す関数
+        $is_following = $follower->isFollowing($user->id); //isFollowing:ユーザーが特定のユーザーをフォロー中か返す関数
         if (!$is_following) { //もしフォローしていなければ
             $follower->follow($user->id); //フォローする
         }
@@ -50,6 +51,12 @@ class UsersController extends Controller
         if ($is_following) { //もしフォローしていれば
             $follower->unfollow($user->id); //フォロー解除する
         }
-        return back();
+        return view('search', ['user' => $user]);
+    }
+
+    //プロフィール更新機能
+    public function update()
+    {
+        $user = Auth::user();
     }
 }

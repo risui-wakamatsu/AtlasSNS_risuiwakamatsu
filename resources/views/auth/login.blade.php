@@ -2,21 +2,29 @@
 
 @extends('layouts.logout')
 
-@section('content')
+@section('content') <!--ここからendまでlogout.bladeの@yield('content')へ-->
 <!-- 適切なURLを入力してください -->
 {!! Form::open(['url' => '/login']) !!} <!--URLはログイン後のページではなく、middlewareを通るためにログインするページにする-->
 
-<p>AtlasSNSへようこそ</p>
+<div class="login_form">
+  <p class="welcome">AtlasSNSへようこそ</p>
 
-{{ Form::label('e-mail') }}
-{{ Form::text('mail',null,['class' => 'input']) }}
-{{ Form::label('password') }}
-{{ Form::password('password',['class' => 'input']) }}
+  <div class="input_form">
+    {{ Form::label('e-mail',null,['class'=>'form_name']) }}
+    {{ Form::text('mail',null,['class' => 'input']) }}
+  </div>
+  <div class="input_form">
+    {{ Form::label('password',null,['class'=>'form_name']) }}
+    {{ Form::password('password',['class' => 'input']) }}
+  </div>
 
-{{ Form::submit('ログイン') }}
+  <div class="login_btn">
+    <button type="submit" class="btn btn-danger">LOGIN</button>
+  </div>
 
-<p><a href="/register">新規ユーザーの方はこちら</a></p>
+  <p class="register"><a class="register_link" href="/register">新規ユーザーの方はこちら</a></p>
 
-{!! Form::close() !!}
+  {!! Form::close() !!}
+</div>
 
 @endsection

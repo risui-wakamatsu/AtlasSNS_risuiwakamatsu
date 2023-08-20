@@ -24,19 +24,20 @@
     <tr>
       <!--<td><img src="{{asset('storage/images'.$users->images)}}" alt="ユーザーアイコン"></td>-->
       <td><img src="{{asset('images/'.$users->images)}}" alt="ユーザーアイコン"></td> <!--修正　usersテーブルのimagesカラムに画像のパスがある場合はこれでアイコン表示できる-->
+      <!--asset pathの設定のため-->
       <td>{{$users->username}}</td>
+      <td>{{$users->id}}</td>
+
       <td>
-        @if (auth()->user()->isFollowing($user->id)) <!--フォローしているユーザーなら-->
-        <form action="{{route('unfollow',$user->id)}}" method="post"> <!--ルーティングのURLを表示させる-->
+        <form action="{{route('unfollow',$users->id)}}" method="post"> <!--ルーティングのURLを表示させる-->
           @csrf
-          <button type="button" class="btn btn-danger">フォロー解除</button>
+          <button type="submit" class="btn btn-danger">フォロー解除</button>
+          <!--buttonのtypeはsubmitにしないと送信れない　type="button"はただのボタン-->
         </form>
-        @else
-        <form action="{{route('follow',$user->id)}}" method="post"> <!--ルーティングのURLを表示させる-->
+        <form action="{{route('follow',$users->id)}}" method="post"> <!--ルーティングのURLを表示させる-->
           @csrf
-          <button type="button" class="btn btn-primary">フォローする</button>
+          <button type="submit" class="btn btn-primary">フォローする</button>
         </form>
-        @endif
       </td>
     </tr>
     @endforeach

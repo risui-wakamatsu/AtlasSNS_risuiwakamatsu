@@ -35,40 +35,39 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="js/script.js"></script>
 
-    </body>
 </head>
+
+
+<!--ここから-->
 
 <body>
     <header>
         <div id="head">
             <div class="header-link">
-                <h1><a href="/top"><img src="images/atlas.png" alt="Atlas"></a></h1> <!--アトラスロゴにヘッダーへ戻るリンクを設定-->
+                <h1><a href="/top"><img class="login_logo" src="images/atlas.png" alt="Atlas" width="145" height="50"></a></h1> <!--アトラスロゴにヘッダーへ戻るリンクを設定-->
             </div>
             <div class="user">
-                <p>{{Auth::user()->username}}さん<img src="images/icon1.png"></p>
-            </div>
-            <!--アコーディオンメニュー記述-->
-            <div class="menu">
                 <dl> <!--dt、dd要素をまとめるリスト-->
+                    <!--アコーディオンメニュー-->
                     <dt class="accordion"> <!--用語-->
+                        <p>{{Auth::user()->username}}　さん　Ｖ<img src="images/icon1.png"></p>
                     <dd class="accordion-contents"> <!--用語の定義・内容-->
                         <ul>
-                            <li><a href="/top">HOME</a></li>
-                            <li><a href="/profile">プロフィール編集</a></li>
-                            <li><a href="/logout">ログアウト</a></li>
+                            <li><a class="menu" href="/top">HOME</a></li>
+                            <li><a class="menu" href="/profile">プロフィール編集</a></li>
+                            <li><a class="menu" href="/logout">ログアウト</a></li>
                         </ul>
                     </dd>
                     </dt>
                 </dl>
             </div>
         </div>
-        </div>
     </header>
-    <div id="row">
+    <div id="row"> <!--行-->
         <div id="container">
             @yield('content')
         </div>
-        <div id="side-bar">
+        <div id="side-bar"> <!--サイドバーに表示される内容-->
             <div id="confirm">
                 <p>{{Auth::user()->username}}さんの</p>
                 <div>
@@ -82,10 +81,13 @@
                 </div>
                 <p class="btn"><a href="/followerList"><button type="button" class="btn btn-info">フォロワーリスト</button></a></p>
             </div>
-            <p class="btn"><a href="/search"><button type="button" class="btn btn-info">ユーザー検索</button></a></p>
+            <div class="search_btn">
+                <p class="btn"><a href="/search"><button type="button" class="btn btn-info">ユーザー検索</button></a></p>
+            </div>
         </div>
     </div>
     <footer>
     </footer>
+</body>
 
 </html>

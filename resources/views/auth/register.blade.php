@@ -17,25 +17,36 @@
 
 {!! Form::open(['url' => '/register']) !!} <!--ルーティング(web.php)に記載されている登録完了ページのページのクラスへ-->
 
-<h2>新規ユーザー登録</h2>
+<div class="register_form">
+  <h2 class="welcome">新規ユーザー登録</h2>
 
-{{ Form::label('ユーザー名') }}
-{{ Form::text('username',null,['class' => 'input']) }}
+  <div class="input_form">
+    {{ Form::label('ユーザー名') }}
+    {{ Form::text('username',null,['class' => 'input']) }}
+  </div>
 
-{{ Form::label('メールアドレス') }}
-{{ Form::text('mail',null,['class' => 'input']) }}
+  <div class="input_form">
+    {{ Form::label('メールアドレス') }}
+    {{ Form::text('mail',null,['class' => 'input']) }}
+  </div>
+  <div class="input_form">
+    {{ Form::label('パスワード') }}
+    {{ Form::text('password',null,['class' => 'input']) }}
+  </div>
 
-{{ Form::label('パスワード') }}
-{{ Form::text('password',null,['class' => 'input']) }}
+  <div class="input_form">
+    {{ Form::label('パスワード確認') }}
+    {{ Form::text('password_confirmation',null,['class' => 'input']) }}
+  </div>
 
-{{ Form::label('パスワード確認') }}
-{{ Form::text('password_confirmation',null,['class' => 'input']) }}
+  <div class="register_btn">
+    <button type="submit" class="btn btn-danger">REGISTER</button>
+  </div>
 
-{{ Form::submit('登録') }}
+  <p class="register"><a class="register_link" href="/login">ログイン画面へ戻る</a></p>
 
-<p><a href="/login">ログイン画面へ戻る</a></p>
-
-{!! Form::close() !!}
+  {!! Form::close() !!}
+</div>
 
 
 @endsection

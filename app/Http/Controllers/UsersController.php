@@ -34,10 +34,10 @@ class UsersController extends Controller
     {
         //ddd($user);
         $following = Auth::user(); //Authでusersテーブルからデータ取得
-        $follower = auth()->user(); //フォローしているか？
-        $is_following = $follower->isFollowing($user->id); //isFollowing:ユーザーが特定のユーザーをフォロー中か返す関数
+        $is_following = auth()->user()->isFollowing($user->id); //isFollowing:ユーザーが特定のユーザーをフォロー中か返す関数
+        ddd($is_following);
         if (!$is_following) { //もしフォローしていなければ
-            $follower->follow($user->id); //フォローする
+            auth()->user()->follow($user->id); //フォローする
         }
         return back();
     }

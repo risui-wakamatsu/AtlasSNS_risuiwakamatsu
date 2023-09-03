@@ -35,23 +35,24 @@ class UsersController extends Controller
         //ddd($user);
         $following = Auth::user(); //Authでusersテーブルからデータ取得
         $is_following = auth()->user()->isFollowing($user->id); //isFollowing:ユーザーが特定のユーザーをフォロー中か返す関数
-        ddd($is_following);
+        //ddd($is_following);
         if (!$is_following) { //もしフォローしていなければ
             auth()->user()->follow($user->id); //フォローする
+            //この時のfollowはUserモデルのfollowメソッドへ
         }
         return back();
     }
 
     //フォロー解除
+    //エラーは出ていないがレコードが消えてない
     public function unfollow(User $user)
     {
-        $user = Auth::user();
-        $follower = auth()->user(); //フォローしているのか？
-        $is_following = $follower->isFollowing($user->id); //isFollowing:ユーザーが特定のユーザーをフォロー中か返す関数
+        $following = Auth::user(); //Authでusersテーブルからデータ取得(ログインユーザー)
+        $is_following = auth()->user()->isFollowing($user->id); //UserモデルのisFollowingメソッドへ
         if ($is_following) { //もしフォローしていれば
-            $follower->unfollow($user->id); //フォロー解除する
+            auth()->user()->unfollow($user->id); //userモデルのunfollowメソッドへ
         }
-        return view('search', ['user' => $user]);
+        return back();
     }
 
     //プロフィール更新機能

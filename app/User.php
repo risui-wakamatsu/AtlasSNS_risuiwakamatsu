@@ -38,25 +38,25 @@ class User extends Authenticatable
     public function following() //このユーザーがフォローしている人を取得
     {
         return $this->belongsToMany(User::class, 'follows', 'following_id', 'followed_id')->withTimestamps();
-        //(使用するモデル,使用するテーブル,リレーション元のidを入れた中間テーブルのカラム,リレーション先のidを入れた中間テーブルのカラム)フォロー(following)しているのか
+        //(使用するモデル,使用するテーブル,リレーション元のidを入れた中間テーブルのカラム,リレーション先のidを入れた中間テーブルのカラム)
     }
 
     public function followed() //このユーザーをフォローしている人を取得
     {
         return $this->belongsToMany(User::class, 'follows', 'followed_id', 'following_id')->withTimestamps();
-        //(使用するモデル,使用するテーブル,どのカラムが,どのカラムに)フォロー(followed)されているのか
+        //(使用するモデル,使用するテーブル,リレーション元のidを入れた中間テーブルのカラム,リレーション先のidを入れた中間テーブルのカラム)
     }
 
     //フォローする
     public function follow(Int $user_id) //INT:変数を正数に
     {
-        return $this->following()->attach($user_id); //attach:紐付け　followテーブルとuser_id紐付け
+        return $this->following()->attach($user_id); //attach:紐付け　followingのリレーションのuser_id紐付け
     }
 
     //フォロー解除する
     public function unfollow(INT $user_id) //INT:変数を正数に
     {
-        return $this->follows()->detach($user_id); //detach:紐付け解除　followテーブルとuser_id紐付け解除
+        return $this->following()->detach($user_id); //detach:紐付け解除　followingのリレーションのuser_id紐付け解除
     }
 
     //フォローしているか
@@ -71,7 +71,9 @@ class User extends Authenticatable
     //フォローされているか
     public function isFollowed(INT $user_id)
     {
-        return (bool) $this->follows()->where('following_id', $user_id)->first(['id']); //first:最初のレコードを返す、単一のレコードを取得する
+        return (bool) $this->followed()->where('following_id', $user_id)->first(); //first:最初のレコードを返す、単一のレコードを取得する
         //boolean:真偽の値を表す　trueとfalseの2種類しか値にない
+        //$this->○○メソッド：このページ内にある○○
+        //where：followed_idのカラムの中に$user_idがあったら取得
     }
 }

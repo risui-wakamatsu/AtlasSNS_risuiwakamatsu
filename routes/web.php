@@ -92,7 +92,7 @@ Route::group(['middleware' => 'auth'], function () {
   //フォロー機能
   Route::post('users/{user}/follow', 'UsersController@follow')->name('follow'); //viewでrouteへルパによってルーティングの表示をさせる
   //フォロー解除機能
-  Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow'); //viewでrouteへルパによってルーティングの表示をさせる
+  Route::post('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow'); //viewでrouteへルパによってルーティングの表示をさせる
 
   //プロフィール編集機能
   Route::post('/profile/{id}/update', 'UsersController@update');

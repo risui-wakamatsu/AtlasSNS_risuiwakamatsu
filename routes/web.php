@@ -63,9 +63,6 @@ Route::group(['middleware' => 'auth'], function () {
   //ユーザー検索ページへ
   Route::get('/search', 'UsersController@search');
 
-  Route::get('/follow-list', 'PostsController@followList');
-  Route::get('/follower-list', 'PostsController@followerList');
-
   //ログアウト
   Route::get('/logout', 'PostsController@logout');
 
@@ -77,8 +74,8 @@ Route::group(['middleware' => 'auth'], function () {
   Route::post('/post/create', 'PostsController@postCreate'); //登録するためのルーティング
 
   //投稿の編集機能
-  Route::get('/post/{id}/update-post', 'PostsController@updateForm');
-  //編集画面へ
+  Route::get('/post/{id}/update-post', 'PostsController@updatePost');
+  //投稿編集画面へ
   //GETで送られるパラメータを{変数名}で受け取る
   Route::post('/post/update', 'PostsController@update'); //更新後の表示
 
@@ -95,5 +92,6 @@ Route::group(['middleware' => 'auth'], function () {
   Route::post('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow'); //viewでrouteへルパによってルーティングの表示をさせる
 
   //プロフィール編集機能
-  Route::post('/profile/{id}/update', 'UsersController@update');
+  Route::post('/profile/update', 'UsersController@updateProfile'); //プロフィール編集画面
+
 });

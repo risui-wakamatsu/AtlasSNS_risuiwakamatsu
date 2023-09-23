@@ -1,30 +1,44 @@
+<!--更新用のフォーム　ブラウザ表示あり-->
+
 @extends('layouts.login')
 
 @section('content')
-<div class="profile">
-  <div class="profile-update">
-    {!! Form::open(['url' => ['/profile/{id}/update'],'method=>post']) !!} <!--更新用のURL-->
-    {{ Form::label('user name') }}
-    {{ Form::text('username','$auth->username',['class'=>'input'])}} <!--追加属性記述する 現在の値出るようにする-->
-
-    {{ Form::label('mail address') }}
-    {{ Form::text('mail','$auth->mail',['class'=>'input'])}} <!--追加属性記述する 現在の値出るようにする-->
-
-    {{Form::label('password')}}
-    {{ Form::password('password',['class'=>'input']) }} <!--追加属性記述する-->
-
-    {{Form::label('password confirm')}}
-    {{ Form::password('confirm',['class'=>'input']) }} <!--追加属性記述する-->
-
-    {{Form::label('bio')}}
-    {{ Form::text('bio','$auth->bio',['class'=>'input'])}} <!--追加属性記述する 現在の値出るようにする-->
-
-    {{Form::label('icon image')}}
-    {{Form::file('icon',['class'=>'input'])}}
-
-    <button type="button" class="btn btn-danger">更新</button>
+<div class="container">
+  <div class="update">
+    {!! Form::open(['url' => '/profile/update']) !!}
+    @csrf
+    {{Form::hidden('id',Auth::user()->id)}}
+    <img class="update-icon" src="images/icon1.png">
+    <div class="update-form">
+      <div class="update-block"> <!--ユーザー名-->
+        <label for="name">user name</label>
+        <input type="text" name="username" value="{{Auth::user()->username}}"> <!--ログインユーザーの情報をvalueを使って初期値に設定-->
+      </div>
+      <div class="update-block"> <!--メールアドレス-->
+        <label for="mail">mail address</label>
+        <input type="email" name="mail" value="{{Auth::user()->mail}}">
+      </div>
+      <div class="update-block"> <!--パスワード-->
+        <label for="pass">password</label>
+        <input type="password" name="password" value="">
+      </div>
+      <div class="update-block"> <!--パスワード確認用-->
+        <label for="name">password comfirm</label>
+        <input type="password" name="password_confirmation" value="">
+      </div>
+      <div class="update-block"> <!--自己紹介文（任意）-->
+        <label for="name">bio</label>
+        <input type="text" name="bio" value="{{Auth::user()->bio}}">
+      </div>
+      <div class="update-block"> <!--アイコン画像アップロード（任意）-->
+        <label for="name">icon image</label>
+        <input type="file" name="images">
+      </div>
+      <input type="submit" class="btn btn-danger"> <!--押下したらデータが更新されるページへ--><!--ログインしているユーザーのidを取得-->
+      {{Form::token()}}
+      {!! Form::close() !!}
+    </div>
   </div>
-
 </div>
 
 

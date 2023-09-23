@@ -20,7 +20,9 @@ class PostsController extends Controller
     {
         $user = Auth::user(); //ログインしたユーザーの情報を取得する
         $username = Auth::user()->username; //上記で取得したユーザー情報からusernameの情報だけ取得する
-        $posts = Post::get(); //Postモデル(テーブル)からレコード情報を取得
+        //$posts = Post::get(); //Postモデル(テーブル)からレコード情報を全て取得
+        $following_id = auth()->user()->following()->pluck('followed_id'); //フォローしているユーザーのidを取得
+        $posts = Post::with('user')->whereIn('user_id', $following_id)->get(); //判定したいテーブル名・カラム名,判定したいテーブル名・カラム名の値として期待されるもの
         return view('posts.index', ['posts' => $posts]); //postsテーブルから取得したデータを$postsに代入しposts.indexで画面表示させる
     }
 
@@ -36,7 +38,7 @@ class PostsController extends Controller
         return redirect('/top'); //投稿画面にリダイレクト
     }
 
-    public function updateForm($id)
+    public function updatePost($id)
     {
         $post = Post::where('id', $id)->first();
         //where句で条件に引数の$idを設定

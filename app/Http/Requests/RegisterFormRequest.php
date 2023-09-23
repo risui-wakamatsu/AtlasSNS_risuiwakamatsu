@@ -44,6 +44,20 @@ class RegisterFormRequest extends FormRequest
         ];
     }
 
+    //プロフィール編集機能のバリデーション
+    public function profileUpdate()
+    {
+        return [
+            'username' => 'required|string|min:2|max:12',
+            'mail' => 'required|string|email|min:5|max:40|unique:users', //自分自身のメールアドレスは同じものでも良いようにする
+            'password' => 'min:8|max:20|regex:/^[a-zA-Z0-9]+$/|confirmed',
+            'password_confirmation' => 'min:8|max:20|regex:/^[a-zA-Z0-9]+$/|',
+            'bio' => 'max:150|nullable', //nullable:任意（nullでもOK）
+            'icon_image' => 'mimes:jpg,png,bmp,gif,svg|nullable', //アップロードできる拡張子指定
+        ];
+    }
+
+
     public function messages() //エラーメッセージ
     {
         return [

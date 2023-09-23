@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User; //追加
+use Illuminate\Auth\Middleware\RequirePassword;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash; //ハッシュ化
 
 class UsersController extends Controller
 {
@@ -44,7 +46,6 @@ class UsersController extends Controller
     }
 
     //フォロー解除
-    //エラーは出ていないがレコードが消えてない
     public function unfollow(User $user)
     {
         $following = Auth::user(); //Authでusersテーブルからデータ取得(ログインユーザー)
@@ -55,9 +56,24 @@ class UsersController extends Controller
         return back();
     }
 
-    //プロフィール更新機能
-    public function update()
+    //プロフィール編集機能
+    public function updateProfile(Request $request)
     {
-        $user = Auth::user();
+        $id = $request->input('id');
+        $username = $request->input('username');
+        $mail = $request->input('mail');
+        $password = $request->input('password');
+        $bio = $request->input('bio');
+        //$images = $request->input('images');
+
+        User::where('id', $id)->update([
+            'username' => $username,
+            'mail' => $mail,
+            'password' => Hash::make($request->password), //ハッシュ化
+            'bio' => $bio,
+            //'images' => $images
+        ]);
+
+        return redirect('/top');
     }
 }

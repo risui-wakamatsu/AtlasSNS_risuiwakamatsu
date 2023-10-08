@@ -5,10 +5,10 @@
 @section('content')
 <div class="container">
   <div class="update">
-    {!! Form::open(['url' => '/profile/update']) !!}
+    {!! Form::open(['url' => '/profile/update','files' => true]) !!} <!--'files' => true：enctype属性のmultipart/form-data--><!--enctype属性：ファイルを送信する場合に必要になる-->
     @csrf
     {{Form::hidden('id',Auth::user()->id)}}
-    <img class="update-icon" src="images/icon1.png">
+    <img class="update-icon" src="{{asset('Auth::user()->images')}}" alt="アイコン">
     <div class="update-form">
       <div class="update-block"> <!--ユーザー名-->
         <label for="name">user name</label>

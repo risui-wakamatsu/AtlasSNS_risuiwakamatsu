@@ -2,12 +2,12 @@
 
 @extends('layouts.login')
 
-@section('content')
+@section('content') <!--login.bladeでも使う-->
 
 <!--投稿フォーム-->
-<div class="container">
+<div class="post_form">
   {!! Form::open(['url' => '/post/create']) !!} <!--登録処理を通る-->
-  <div class="post_form">
+  <div class="form-group">
     {{ Form::input('text', 'newPost', null, ['required', 'class' => 'form-control', 'placeholder' => '投稿内容を入力してください。']) }}<!--inputタグ-->
     <!--<input type="text" name="newPost" class="form-control" placeholder="投稿内容を入力してください。">-->
   </div>
@@ -19,34 +19,32 @@
   {!! Form::close() !!}
 </div>
 
-<div class="post-container">
-  @foreach($posts as $post) <!--投稿-->
-  <li class="post_block">
-    <figure><img src="images/icon1.png"></figure>
-    <div class="post_content">
-      <div class="post_name">{{$post->user->username}}</div> <!--リレーション postsテーブルから取得したものを表示させる-->
-      <div class="post">{{$post->post}}</div>
-      <div class="post_date">{{$post->created_at}}</div>
+@foreach($posts as $post) <!--投稿-->
+<li class="post_block">
+  <figure><img class="post_icon" src="images/icon1.png"></figure>
+  <div class="post_content">
+    <div class="post_name">{{$post->user->username}}</div> <!--リレーション postsテーブルから取得したものを表示させる-->
+    <div class="post_date">{{$post->created_at}}</div>
+    <div class="post">{{$post->post}}</div>
+  </div>
+
+  @if(Auth::user()->id==$post->user_id) <!--idとuser_idがあっている時のみ編集と削除の機能が使える-->
+
+  <!--更新機能-->
+  <div class="button_block">
+    <div class="content">
+      <a class="js-modal-open button" href="" post="{{$post->post}}" post_id="{{$post->id}}"><img src="./images/edit.png" alt="編集"></a>
     </div>
 
-    @if(Auth::user()->id==$post->user_id) <!--idとuser_idがあっている時のみ編集と削除の機能が使える-->
-
-    <!--更新機能-->
-    <div class="button_block">
-      <div class="content">
-        <a class="js-modal-open button" href="" post="{{$post->post}}" post_id="{{$post->id}}"><img src="./images/edit.png" alt="編集"></a>
-      </div>
-
-      <!--削除機能-->
-      <div class="content">
-        <a class="button" href="/post/{{$post->id}}/delete" onclick="return confirm('この投稿を削除します。よろしいでしょうか？')">
-          <img src="./images/trash.png" alt="削除1" width="100%" height="100%">
-          <img src="./images/trash-h.png" alt="削除2" width="100%" height="100%">
-        </a>
-      </div>
+    <!--削除機能-->
+    <div class="content">
+      <a class="button" href="/post/{{$post->id}}/delete" onclick="return confirm('この投稿を削除します。よろしいでしょうか？')">
+        <img src="./images/trash.png" alt="削除1" width="100%" height="100%">
+        <img src="./images/trash-h.png" alt="削除2" width="100%" height="100%">
+      </a>
     </div>
-  </li>
-</div>
+  </div>
+</li>
 <!--ファサードを使い画像を反映させる-->
 <!--onclickで削除のモーダル-->
 
@@ -64,9 +62,10 @@
   </div>
 </div>
 
+
+
 @endif
 
 @endforeach
-</div>
 
 @endsection

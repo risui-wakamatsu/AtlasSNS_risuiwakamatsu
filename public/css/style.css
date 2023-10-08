@@ -18,13 +18,12 @@ header {
 }
 
 #container {
-    flex: 0 0 75%;
+    flex: 0 0 80%;
     /*左側が75%*/
 }
 
 #side-bar {
     border-left: 1px solid #727272;
-
 }
 
 /* アコーディオンメニュー */
@@ -119,16 +118,24 @@ header {
 
 .post_btn {
     text-align: right;
+    margin-bottom: 15px;
+    margin-right: 200px;
+}
+
+.post_form {
+    border-bottom: 8px solid #d3d3d3;
 }
 
 .post_block {
-    padding: 20px 0 20px 50px;
+    padding: 20px 0 20px 200px;
     list-style: none;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid #d3d3d3;
+    /*position: relative;*/
 }
 
 .form-control {
-    border: none;
+    border: none !important;
+    /*!important!:最優先*/
     width: 100%;
     height: 200px;
 }
@@ -137,6 +144,9 @@ header {
     display: flex;
     justify-content: flex-end;
     padding-right: 10px;
+    /*position: absolute;
+    right: 0;
+    bottom: 0;*/
 }
 
 .content {
@@ -176,4 +186,51 @@ header {
 
 .update-block {
     margin: 7% 0;
+}
+
+/*pとimgを横並びにする
+.follow-title,
+.follow-icon {
+    float: left;
+*/
+/*imgを横並びにする
+.follow-icon {
+    display: flex;
+}
+*/
+
+.follow-list {
+    display: flex;
+    flex-wrap: nowrap;
+    border-bottom: 8px solid #d3d3d3;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.follow-icon {
+    display: inline;
+}
+
+.follow-title {
+    font-weight: bold;
+    margin-left: 150px;
+}
+
+.post_icon,
+.post_name,
+.post_date {
+    display: inline;
+}
+
+.post_block {
+    display: flex;
+}
+
+.post_content {
+    margin-left: 15px;
+}
+
+.profile-group {
+    height: 200px;
+    border-bottom: 8px solid #d3d3d3;
 }

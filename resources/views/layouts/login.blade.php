@@ -1,4 +1,5 @@
 <!--http://127.0.0.1:8000/top-->
+<!--assetを使うことでリソースデータを読み込むことができる-->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +34,7 @@
 
     <!--ーjQuery-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="{{asset('js/script.js')}}"></script>
 
 </head>
 
@@ -44,22 +45,20 @@
     <header>
         <div id="head">
             <div class="header-link">
-                <h1><a href="/top"><img class="login_logo" src="images/atlas.png" alt="Atlas" width="145" height="50"></a></h1> <!--アトラスロゴにヘッダーへ戻るリンクを設定-->
+                <h1><a href="/top"><img class="login_logo" src="{{asset('images/atlas.png')}}" alt="Atlas" width="145" height="50"></a></h1> <!--アトラスロゴにヘッダーへ戻るリンクを設定-->
             </div>
             <div class="user">
-                <dl> <!--dt、dd要素をまとめるリスト-->
-                    <!--アコーディオンメニュー-->
-                    <dt class="accordion"> <!--用語-->
-                        <p>{{Auth::user()->username}}　さん　Ｖ<img src="images/icon1.png"></p>
-                    <dd class="accordion-contents"> <!--用語の定義・内容-->
-                        <ul>
-                            <li><a class="menu" href="/top">HOME</a></li>
-                            <li><a class="menu" href="/profile">プロフィール編集</a></li>
-                            <li><a class="menu" href="/logout">ログアウト</a></li>
-                        </ul>
-                    </dd>
-                    </dt>
-                </dl>
+                <!--アコーディオンメニュー-->
+                <dt class="accordion"> <!--用語-->
+                    <p>{{Auth::user()->username}}　さん　Ｖ<img src="{{asset('storage/'.Auth::user()->images)}}"></p>
+                <dd class="accordion-contents"> <!--用語の定義・内容-->
+                    <ul>
+                        <li><a class="menu" href="/top">HOME</a></li>
+                        <li><a class="menu" href="/profile">プロフィール編集</a></li>
+                        <li><a class="menu" href="/logout">ログアウト</a></li>
+                    </ul>
+                </dd>
+                </dt>
             </div>
         </div>
     </header>
@@ -69,20 +68,20 @@
         </div>
         <div id="side-bar"> <!--サイドバーに表示される内容-->
             <div id="confirm">
-                <p>{{Auth::user()->username}}さんの</p>
+                <p class="side">{{Auth::user()->username}}さんの</p>
                 <div>
-                    <p>フォロー数</p>
+                    <p class="side">フォロー数</p>
                     <p>{{Auth::user()->following()->get()->count()}}名</p> <!--Userモデルのfollowingからフォローしているユーザーの人数を取得-->
                 </div>
-                <p class="btn"><a href="/followList"><button type="button" class="btn btn-info">フォローリスト</button></a></p>
+                <p class="side-btn"><a href="/followList"><button type="button" class="btn btn-info">フォローリスト</button></a></p>
                 <div>
-                    <p>フォロワー数</p>
+                    <p class="side">フォロワー数</p>
                     <p>{{Auth::user()->followed()->get()->count()}}名</p> <!--Userモデルのfollowedからフォローしているユーザーの人数を取得-->
                 </div>
-                <p class="btn"><a href="/followerList"><button type="button" class="btn btn-info">フォロワーリスト</button></a></p>
+                <p class="side-btn"><a href="/followerList"><button type="button" class="btn btn-info">フォロワーリスト</button></a></p>
             </div>
             <div class="search_btn">
-                <p class="btn"><a href="/search"><button type="button" class="btn btn-info">ユーザー検索</button></a></p>
+                <p class="search-btn"><a href="/search"><button type="button" class="btn btn-info">ユーザー検索</button></a></p>
             </div>
         </div>
     </div>

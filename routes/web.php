@@ -94,4 +94,6 @@ Route::group(['middleware' => 'auth'], function () {
   //プロフィール編集機能
   Route::post('/profile/update', 'UsersController@updateProfile'); //プロフィール編集画面
 
+  //他ユーザーのプロフィールページ
+  Route::get('/users/{id}/profile', 'UsersController@userProfile');
 });

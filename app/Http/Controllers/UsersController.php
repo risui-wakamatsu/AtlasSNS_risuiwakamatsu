@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User; //追加
+use App\Post; //追加
 use Illuminate\Auth\Middleware\RequirePassword;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash; //ハッシュ化
@@ -65,15 +66,33 @@ class UsersController extends Controller
         $password = $request->input('password');
         $bio = $request->input('bio');
         //$images = $request->input('images');
+        $dir = 'images'; //画像が保存されるpublic内のフォルダ名を定義
+        $file_name = $request->file('images')->getClientOriginalName();
+        $images = $request->file('images')->storeAs('public/' . $dir, $file_name); //storeAs：画像を保存するメソッド シンボリックリンク $dir：保存先のフォルダ $file_name：アップロードされたファイルの名前を取得
+        //if文を使って、画像が入っていれば登録、入っていなければその他を登録
+        //if ($images) {}
+        //ddd($images);
+        //画像の保存:storage/app/public
+        //画像の表示:public/storage
 
         User::where('id', $id)->update([
             'username' => $username,
             'mail' => $mail,
-            'password' => Hash::make($request->password), //ハッシュ化
+            'password' => Hash::make($request->password), //ハッシュ化することでDBに変更した内容がそのまま反映されずに暗号化される
             'bio' => $bio,
-            //'images' => $images
+            'images' => $images
         ]);
 
         return redirect('/top');
+    }
+
+    public function userProfile($id) //フォロー、フォロワーリストから他ユーザーのプロフィールへ飛ぶ
+    {
+        $user = User::where('id', $id)->first();
+        $post = Post::all();
+        //$post = Post::where('user_id', $user_id)->first();
+        //ddd($post);
+        //ddd($id);
+        return view('users.userProfile', ['user' => $user, 'post' => $post]);
     }
 }

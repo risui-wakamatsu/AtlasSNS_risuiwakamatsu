@@ -22,7 +22,7 @@
     @foreach($users as $users)
     <tr>
       <!--<td><img src="{{asset('storage/images'.$users->images)}}" alt="ユーザーアイコン"></td>-->
-      <td><img src="{{asset('images/'.$users->images)}}" alt="ユーザーアイコン"></td> <!--修正　usersテーブルのimagesカラムに画像のパスがある場合はこれでアイコン表示できる-->
+      <td><img src="{{asset('storage/'.$users->images)}}" alt="ユーザーアイコン" height="64" width="64"></td> <!--修正　usersテーブルのimagesカラムに画像のパスがある場合はこれでアイコン表示できる-->
       <!--asset pathの設定のため-->
       <td>{{$users->username}}</td>
       <td>{{$users->id}}</td>

@@ -65,23 +65,26 @@ class UsersController extends Controller
         $mail = $request->input('mail');
         $password = $request->input('password');
         $bio = $request->input('bio');
-        //$images = $request->input('images');
-        $dir = 'images'; //画像が保存されるpublic内のフォルダ名を定義
-        $file_name = $request->file('images')->getClientOriginalName();
-        $images = $request->file('images')->storeAs('public/' . $dir, $file_name); //storeAs：画像を保存するメソッド シンボリックリンク $dir：保存先のフォルダ $file_name：アップロードされたファイルの名前を取得
-        //if文を使って、画像が入っていれば登録、入っていなければその他を登録
-        //if ($images) {}
-        //ddd($images);
-        //画像の保存:storage/app/public
-        //画像の表示:public/storage
 
         User::where('id', $id)->update([
             'username' => $username,
             'mail' => $mail,
             'password' => Hash::make($request->password), //ハッシュ化することでDBに変更した内容がそのまま反映されずに暗号化される
             'bio' => $bio,
-            'images' => $images
         ]);
+
+        if ($request->file('images')) { //fileでimagesを取得していたら画像の保存・更新を実行
+            $file_name = $request->file('images')->getClientOriginalName(); //$file_name：アップロードされたファイルの名前を取得
+            $images = $request->file('images')->storeAs('', $file_name, 'public'); //storeAs：画像を保存するメソッド シンボリックリンク
+            //引数(1.フォルダ名,2.ファイルネーム,3.ディスク名) 1にpublicをしてしてしまうと保存された画像のパスがpublic/~~~になるため、1は空欄で3にpublicを指定する そうすれば1が空欄でもstorage/app/publicに画像が保存される
+            //if文を使って、画像が入っていれば登録、入っていなければその他を登録
+            //画像の保存:storage/app/public
+            //画像の表示:public/storage シンボリックリンク
+
+            User::where('id', $id)->update([
+                'images' => $images,
+            ]);
+        }
 
         return redirect('/top');
     }
@@ -89,10 +92,7 @@ class UsersController extends Controller
     public function userProfile($id) //フォロー、フォロワーリストから他ユーザーのプロフィールへ飛ぶ
     {
         $user = User::where('id', $id)->first();
-        $post = Post::all();
-        //$post = Post::where('user_id', $user_id)->first();
-        //ddd($post);
-        //ddd($id);
+        $post = Post::where('user_id', $id)->get();
         return view('users.userProfile', ['user' => $user, 'post' => $post]);
     }
 }

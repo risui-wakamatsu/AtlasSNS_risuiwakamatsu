@@ -8,7 +8,7 @@
     {!! Form::open(['url' => '/profile/update','files' => true]) !!} <!--'files' => true：enctype属性のmultipart/form-data--><!--enctype属性：ファイルを送信する場合に必要になる-->
     @csrf
     {{Form::hidden('id',Auth::user()->id)}}
-    <img class="update-icon" src="{{asset('Auth::user()->images')}}" alt="アイコン">
+    <img class="update-icon" src="{{asset('storage/'.Auth::user()->images)}}" alt="アイコン" height="64" width="64">
     <div class="update-form">
       <div class="update-block"> <!--ユーザー名-->
         <label for="name">user name</label>

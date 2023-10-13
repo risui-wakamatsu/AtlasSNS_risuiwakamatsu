@@ -14,7 +14,7 @@
 
 @foreach($posts as $post) <!--投稿-->
 <li class="post_block">
-  <img class="post_icon" src="images/icon1.png">
+  <img class="post_icon" src="{{asset('storage/'.$post->user->images)}}">
   <div class="post_content">
     <div class="post_name">{{$post->user->username}}</div> <!--リレーション postsテーブルから取得したものを表示させる-->
     <div class="post_date">{{$post->created_at}}</div>

@@ -50,7 +50,7 @@
             <div class="user">
                 <!--アコーディオンメニュー-->
                 <dt class="accordion"> <!--用語-->
-                    <p>{{Auth::user()->username}}　さん　Ｖ<img src="{{asset('storage/'.Auth::user()->images)}}"></p>
+                    <p>{{Auth::user()->username}}　さん　Ｖ<img src="{{asset('storage/'.Auth::user()->images)}}" height="64" width="64"></p>
                 <dd class="accordion-contents"> <!--用語の定義・内容-->
                     <ul>
                         <li><a class="menu" href="/top">HOME</a></li>

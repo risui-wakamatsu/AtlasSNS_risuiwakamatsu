@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; //追加
 use App\Post; //追加　Postモデルを使用するため
-//use App\User; //追加
+use App\User; //追加
 
 class PostsController extends Controller
 {
@@ -23,7 +23,7 @@ class PostsController extends Controller
         //$posts = Post::get(); //Postモデル(テーブル)からレコード情報を全て取得
         $following_id = auth()->user()->following()->pluck('followed_id'); //フォローしているユーザーのidを取得
         $posts = Post::with('user')->whereIn('user_id', $following_id)->get(); //判定したいテーブル名・カラム名,判定したいテーブル名・カラム名の値として期待されるもの
-        return view('posts.index', ['posts' => $posts]); //postsテーブルから取得したデータを$postsに代入しposts.indexで画面表示させる
+        return view('posts.index', ['posts' => $posts, 'user' => $user]); //postsテーブルから取得したデータを$postsに代入しposts.indexで画面表示させる
     }
 
     public function postCreate(Request $request) //ブラウザに表示されない登録処理だけを行うメソッド

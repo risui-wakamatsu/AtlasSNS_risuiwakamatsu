@@ -31,7 +31,7 @@
 <body>
   <header class="login">
     <div class="title">
-      <div style="text-align:center;"><img class="form_logo" src="images/atlas.png" width="210"></div> <!--インライン要素のimgをブロック要素のdivで囲み中央寄せにする-->
+      <div style="text-align:center;"><img class="form_logo" src="images/atlas.png" width="150"></div> <!--インライン要素のimgをブロック要素のdivで囲み中央寄せにする-->
       <p class="subtitle">Social Network Service</p>
     </div>
     @yield('content')

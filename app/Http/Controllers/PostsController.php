@@ -22,7 +22,9 @@ class PostsController extends Controller
         $username = Auth::user()->username; //上記で取得したユーザー情報からusernameの情報だけ取得する
         //$posts = Post::get(); //Postモデル(テーブル)からレコード情報を全て取得
         $following_id = auth()->user()->following()->pluck('followed_id'); //フォローしているユーザーのidを取得
-        $posts = Post::with('user')->whereIn('user_id', $following_id)->get(); //判定したいテーブル名・カラム名,判定したいテーブル名・カラム名の値として期待されるもの
+        $posts = Post::with('user')->whereIn('user_id', $following_id)->orWhere('user_id', $user->id)->latest()->get(); //判定したいテーブル名・カラム名,判定したいテーブル名・カラム名の値として期待されるもの
+        //whereINでフォローしているユーザーのid
+        //orWhereでログインしたユーザー（自分）
         return view('posts.index', ['posts' => $posts, 'user' => $user]); //postsテーブルから取得したデータを$postsに代入しposts.indexで画面表示させる
     }
 

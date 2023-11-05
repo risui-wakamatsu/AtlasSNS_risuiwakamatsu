@@ -7,14 +7,11 @@
 <!--投稿フォーム-->
 <div class="post_form">
   {!! Form::open(['url' => '/post/create']) !!} <!--登録処理を通る-->
-  <div class="form-group">
-    {{ Form::input('text', 'newPost', null, ['required', 'class' => 'form-control', 'placeholder' => '投稿内容を入力してください。']) }}<!--inputタグ-->
-    <!--<input type="text" name="newPost" class="form-control" placeholder="投稿内容を入力してください。">-->
-  </div>
+  <img class="post_user_icon" src="{{asset('storage/'.$user->images)}}" alt="ユーザーアイコン" height="64" width="64">
+  {{ Form::input('text', 'newPost', null, ['required', 'class' => 'form-control', 'placeholder' => '投稿内容を入力してください。']) }}<!--inputタグ-->
+  <!--<input type="text" name="newPost" class="form-control" placeholder="投稿内容を入力してください。">-->
   <!--{{Form::image('images/post.png')}}--> <!--ー画像送信ボタン-->
-  <div class="post_btn">
-    <input class="post_img" type="image" src="images/post.png" alt="投稿" width="50" height="50">
-  </div>
+  <input class="post_img" type="image" src="images/post.png" alt="投稿" width="40" height="40">
   {{Form::token()}}
   {!! Form::close() !!}
 </div>
@@ -33,7 +30,7 @@
   <!--更新機能-->
   <div class="button_block">
     <div class="content">
-      <a class="js-modal-open button" href="" post="{{$post->post}}" post_id="{{$post->id}}"><img src="./images/edit.png" alt="編集"></a>
+      <a class="js-modal-open edit" href="" post="{{$post->post}}" post_id="{{$post->id}}"><img src="./images/edit.png" alt="編集" width="40" height="40"></a>
     </div>
 
     <!--削除機能-->

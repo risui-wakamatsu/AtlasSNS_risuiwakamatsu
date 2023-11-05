@@ -50,9 +50,10 @@
             <div class="user">
                 <!--アコーディオンメニュー-->
                 <dt class="accordion"> <!--用語-->
-                    <p>{{Auth::user()->username}}　さん　Ｖ<img src="{{asset('storage/'.Auth::user()->images)}}" height="64" width="64"></p>
+                    <p class="login_user">{{Auth::user()->username}}　さん<img src="{{asset('storage/'.Auth::user()->images)}}" height="64" width="64"></p>
                 <dd class="accordion-contents"> <!--用語の定義・内容-->
                     <ul>
+                        <br>
                         <li><a class="menu" href="/top">HOME</a></li>
                         <li><a class="menu" href="/profile">プロフィール編集</a></li>
                         <li><a class="menu" href="/logout">ログアウト</a></li>
@@ -70,18 +71,20 @@
             <div id="confirm">
                 <p class="side">{{Auth::user()->username}}さんの</p>
                 <div>
-                    <p class="side">フォロー数</p>
-                    <p>{{Auth::user()->following()->get()->count()}}名</p> <!--Userモデルのfollowingからフォローしているユーザーの人数を取得-->
+                    <p class="side">フォロー数&emsp;{{Auth::user()->following()->get()->count()}}名</p>
+                    <!--Userモデルのfollowingからフォローしているユーザーの人数を取得-->
+                    <!--&emsp;→特殊文字：全角のスペースを開ける-->
                 </div>
-                <p class="side-btn"><a href="/followList"><button type="button" class="btn btn-info">フォローリスト</button></a></p>
+                <p class="side_btn"><a href="/followList"><button type="button" class="btn btn-info">フォローリスト</button></a></p>
                 <div>
-                    <p class="side">フォロワー数</p>
-                    <p>{{Auth::user()->followed()->get()->count()}}名</p> <!--Userモデルのfollowedからフォローしているユーザーの人数を取得-->
+                    <p class="side">フォロワー数&emsp;{{Auth::user()->followed()->get()->count()}}名</p>
+                    <!--Userモデルのfollowedからフォローしているユーザーの人数を取得-->
+                    <!--&emsp;→特殊文字：全角のスペースを開ける-->
                 </div>
-                <p class="side-btn"><a href="/followerList"><button type="button" class="btn btn-info">フォロワーリスト</button></a></p>
+                <p class="side_btn"><a href="/followerList"><button type="button" class="btn btn-info">フォロワーリスト</button></a></p>
             </div>
             <div class="search_btn">
-                <p class="search-btn"><a href="/search"><button type="button" class="btn btn-info">ユーザー検索</button></a></p>
+                <a href="/search"><button type="button" class="btn btn-info">ユーザー検索</button></a>
             </div>
         </div>
     </div>

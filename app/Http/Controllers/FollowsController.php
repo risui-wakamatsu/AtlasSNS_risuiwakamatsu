@@ -12,9 +12,10 @@ class FollowsController extends Controller
 {
     public function followList()
     {
+        $user = Auth::user();
         $follows = Auth::User()->following()->get();
         $following_id = Auth::User()->following()->pluck('followed_id'); //フォローしているユーザーのidを取得
-        $posts = Post::with('user')->whereIn('user_id', $following_id)->get();
+        $posts = Post::with('user')->whereIn('user_id', $following_id)->latest()->get();
         //ddd($posts);
         return view('follows.followList', ['follows' => $follows, 'posts' => $posts]);
     }
@@ -22,7 +23,7 @@ class FollowsController extends Controller
     {
         $followers = Auth::User()->followed()->get();
         $followed_id = Auth::User()->followed()->pluck('following_id'); //自分をフォローしているユーザーのidを取得
-        $posts = Post::with('user')->whereIn('user_id', $followed_id)->get();
+        $posts = Post::with('user')->whereIn('user_id', $followed_id)->latest()->get();
         //ddd($follows);
         return view('follows.followerList', ['followers' => $followers, 'posts' => $posts]);
     }

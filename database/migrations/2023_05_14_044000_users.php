@@ -19,7 +19,7 @@ class Users extends Migration
             $table->string('mail', 255);
             $table->string('password', 255);
             $table->string('bio', 400);
-            $table->string('images', 255)->default('basket.png'); //画像パスは文字だからstring型でok
+            $table->string('images', 255); //画像パスは文字だからstring型でok
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update current_timestamp'));
         });

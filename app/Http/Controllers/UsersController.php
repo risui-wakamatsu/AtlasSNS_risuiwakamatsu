@@ -92,7 +92,7 @@ class UsersController extends Controller
     public function userProfile($id) //フォロー、フォロワーリストから他ユーザーのプロフィールへ飛ぶ
     {
         $user = User::where('id', $id)->first();
-        $post = Post::where('user_id', $id)->get();
+        $post = Post::where('user_id', $id)->latest()->get();
         return view('users.userProfile', ['user' => $user, 'post' => $post]);
     }
 }

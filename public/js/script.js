@@ -1,8 +1,17 @@
 /* アコーディオンメニュー */
-$(function () {
+/*$(function () {
   $('.accordion').on('click', function () {
     $(this).next().slideToggle();
   });
+});*/
+$(function () {
+  function sp_menu() {
+    var windowWidth = parseInt($(window).width());
+    if (windowWidth <= 600) {
+      $(this).toggleClass("active_sp");
+    }
+  }
+  $("#accordion").click(sp_menu);
 });
 
 

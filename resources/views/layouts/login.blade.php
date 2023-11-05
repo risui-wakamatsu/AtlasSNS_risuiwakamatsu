@@ -49,17 +49,15 @@
             </div>
             <div class="user">
                 <!--アコーディオンメニュー-->
-                <dt class="accordion"> <!--用語-->
-                    <p class="login_user">{{Auth::user()->username}}　さん<img src="{{asset('storage/'.Auth::user()->images)}}" height="64" width="64"></p>
-                <dd class="accordion-contents"> <!--用語の定義・内容-->
-                    <ul>
-                        <br>
-                        <li><a class="menu" href="/top">HOME</a></li>
-                        <li><a class="menu" href="/profile">プロフィール編集</a></li>
-                        <li><a class="menu" href="/logout">ログアウト</a></li>
-                    </ul>
-                </dd>
-                </dt>
+                <ul class="dropmenu">
+                    <li id="accordion"><a>{{Auth::user()->username}}　さん<img class="accordion_img" src="{{asset('storage/'.Auth::user()->images)}}" height="64" width="64"></a>
+                        <ul>
+                            <li><a class="menu" href="/top">HOME</a></li>
+                            <li><a class="menu" href="/profile">プロフィール編集</a></li>
+                            <li><a class="menu" href="/logout">ログアウト</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </div>
     </header>

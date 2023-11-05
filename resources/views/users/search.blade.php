@@ -8,11 +8,11 @@
 <div class="search_block">
   <form action="/search" class="search" method="post">
     @csrf
-    <input type="search" name="keyword" class="search-form" placeholder="ユーザー名">
+    <input type="search" name="keyword" class="search_form" placeholder="ユーザー名">
     <input type="image" class="search_img" src="./images/search.png" alt="検索" width="40" height="40">
     <!--検索ワード-->
     @if(!empty($keyword))
-    <p class="search-word">検索ワード：{{$keyword}}</p>
+    <p class="search_word">検索ワード：{{$keyword}}</p>
     @endif
   </form>
 </div>

@@ -4,15 +4,6 @@
     $(this).next().slideToggle();
   });
 });*/
-$(function () {
-  function sp_menu() {
-    var windowWidth = parseInt($(window).width());
-    if (windowWidth <= 600) {
-      $(this).toggleClass("active_sp");
-    }
-  }
-  $("#accordion").click(sp_menu);
-});
 
 
 /*編集のモーダル機能*/

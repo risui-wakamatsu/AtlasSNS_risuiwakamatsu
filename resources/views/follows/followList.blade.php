@@ -1,11 +1,11 @@
 @extends('layouts.login')
 
 @section('content')
-<div class="follow-list">
-  <p class="follow-title">Follow List</p>
+<div class="follow_list">
+  <p class="follow_title">Follow List</p>
   <ul>
     @foreach($follows as $follows) <!--FollowsControllerのfollowListメソッドの$follows-->
-    <li class="follow-icon">
+    <li class="follow_icon">
       <a href="/users/{{$follows->id}}/profile"><img src="{{asset('storage/'.$follows->images)}}" alt="フォローアイコン" height="64" width="64"></a>
       <!--$followsからuserテーブルのimagesを表示-->
     </li>

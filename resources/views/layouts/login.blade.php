@@ -44,13 +44,13 @@
 <body>
     <header>
         <div id="head">
-            <div class="header-link">
+            <div class="header_link">
                 <h1><a href="/top"><img class="login_logo" src="{{asset('images/atlas.png')}}" alt="Atlas" width="145" height="50"></a></h1> <!--アトラスロゴにヘッダーへ戻るリンクを設定-->
             </div>
             <div class="user">
                 <!--アコーディオンメニュー-->
                 <ul class="dropmenu">
-                    <li id="accordion"><a>{{Auth::user()->username}}　さん<img class="accordion_img" src="{{asset('storage/'.Auth::user()->images)}}" height="64" width="64"></a>
+                    <li class="accordion"><a>{{Auth::user()->username}}　さん</a>
                         <ul>
                             <li><a class="menu" href="/top">HOME</a></li>
                             <li><a class="menu" href="/profile">プロフィール編集</a></li>
@@ -58,6 +58,7 @@
                         </ul>
                     </li>
                 </ul>
+                <img class="accordion_img" src="{{asset('storage/'.Auth::user()->images)}}" height="64" width="64">
             </div>
         </div>
     </header>

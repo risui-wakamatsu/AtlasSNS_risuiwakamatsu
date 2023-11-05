@@ -2,9 +2,9 @@
 
 @section('content')
 
-<div class="profile-group">
+<div class="profile_group">
   <img src="{{asset('/storage/'.$user->images)}}" alt="プロフィールアイコン" height="64" width="64">
-  <div class="profile-content">
+  <div class="profile_content">
     <div class="content_name">
       <p class="item1">name</p>
       <p class="item">{{$user->username}}</p>

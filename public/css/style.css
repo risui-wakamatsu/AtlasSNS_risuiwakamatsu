@@ -11,6 +11,10 @@ header {
     background: #186AC9;
 }
 
+.header_link {
+    width: 80%;
+}
+
 /* main content */
 #row {
     display: flex;
@@ -24,6 +28,7 @@ header {
 
 #head {
     display: flex;
+    height: 100px;
 }
 
 #side-bar {
@@ -65,6 +70,7 @@ header {
 .menu {
     color: #727272;
     text-decoration: none;
+    text-align: center;
 }
 
 /*モーダル
@@ -129,9 +135,10 @@ header {
 
 /*ログイン後画面　ユーザーネーム*/
 .user {
+    display: flex;
     color: #fff;
     font-weight: bold;
-    padding-left: 70%;
+    /*padding-left: 70%;*/
 }
 
 /*ログイン画面*/
@@ -205,7 +212,7 @@ header {
 }
 
 
-.search-word {
+.search_word {
     display: inline;
     margin-bottom: 0;
     margin-left: 100px;
@@ -216,7 +223,7 @@ header {
     align-items: center;
 }
 
-.search-form {
+.search_form {
     margin-right: 15px;
 }
 
@@ -225,21 +232,21 @@ header {
     margin-left: 20%;
 }
 
-.update-form {
+.update_form {
     margin-top: -75px;
     margin-left: 20%;
 }
 
-.update-block {
+.update_block {
     display: flex;
     margin: 7% 0;
 }
 
-.update-icon {
+.update_icon {
     margin-top: 50px;
 }
 
-.update-btn {
+.update_btn {
     margin-bottom: 30px;
 }
 
@@ -254,7 +261,7 @@ header {
 }
 */
 
-.follow-list {
+.follow_list {
     display: flex;
     flex-wrap: nowrap;
     border-bottom: 8px solid #d3d3d3;
@@ -262,11 +269,11 @@ header {
     margin-top: 20px;
 }
 
-.follow-icon {
+.follow_icon {
     display: inline;
 }
 
-.follow-title {
+.follow_title {
     font-weight: bold;
     margin-left: 150px;
 }
@@ -284,7 +291,7 @@ header {
 
 }
 
-.profile-group {
+.profile_group {
     display: flex;
     /*height: 200px;*/
     border-bottom: 8px solid #d3d3d3;
@@ -292,7 +299,7 @@ header {
     position: relative;
 }
 
-.profile-content {
+.profile_content {
     margin-top: 15px;
     padding-left: 25px;
 }
@@ -358,11 +365,12 @@ td {
 /*アコーディオンメニュー仮*/
 .dropmenu {
     width: 200px;
-    margin: 0 auto;
 }
 
 .dropmenu li {
     position: relative;
+    /*相対的　現在地を基準とする　absoluteとセット*/
+    padding-top: 30px;
 }
 
 .dropmenu li a {
@@ -373,16 +381,18 @@ td {
 }
 
 .dropmenu li a:after {
+    /*ドロップダウンの矢印の設定*/
     content: '';
     display: inline-block;
     position: absolute;
+    /**絶対位置指定要素　itemの場所を指定できる*/
     right: 60px;
-    top: 40%;
-    width: 0;
-    height: 0;
+    top: 48px;
     border-style: solid;
     border-width: 8px 5px 0 5px;
-    border-color: #FFFFFF transparent transparent transparent;
+    /*矢印の元*/
+    border-color: #FFFFFF transparent;
+    /*transparentで要素を透明にする*/
 }
 
 .dropmenu li ul {
@@ -391,6 +401,7 @@ td {
 
 .dropmenu li ul li {
     overflow: hidden;
+    /*要素のはみ出ている部分をhidden隠す*/
     height: 0;
     transition: .2s;
 }
@@ -405,20 +416,23 @@ td {
     content: none;
 }
 
-@media screen and (min-width: 601px) {
-    .dropmenu li:hover a:after {
-        transform: rotate(180deg);
-        transition: .1s;
-    }
+.dropmenu li:hover a:after {
+    transform: rotate(180deg);
+    transition: .1s;
+}
 
-    .dropmenu li:hover ul li {
-        overflow: visible;
-        height: 40px;
-    }
+.dropmenu li:hover ul li {
+    overflow: visible;
+    height: 40px;
+    width: 180px;
+}
 
-    .dropmenu li ul li a:hover {
-        background: #00008b;
-        color: #ffffff;
-        transition: .5s;
-    }
+.dropmenu li ul li a:hover {
+    background: #00008b;
+    color: #ffffff;
+    transition: .3s;
+}
+
+.accordion_img {
+    margin-top: 17px;
 }

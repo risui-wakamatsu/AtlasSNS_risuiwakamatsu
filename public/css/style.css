@@ -89,7 +89,8 @@ header {
 }
 
 .modal__bg {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(169, 169, 169, 0.4);
+    /*背景半透明にする*/
     height: 100vh;
     position: absolute;
     width: 100%;
@@ -101,8 +102,16 @@ header {
     padding: 40px;
     position: absolute;
     top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-16.5%, -30%);
     width: 60%;
+    height: 300px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.modal_post {
+    width: 95%;
+    height: 180px;
 }
 
 /*削除ボタン　hover*/
@@ -178,6 +187,7 @@ header {
 
 .post_block {
     display: flex;
+    flex-wrap: wrap;
     padding: 20px 0 20px 200px;
     list-style: none;
     border-bottom: 1px solid #d3d3d3;
@@ -194,12 +204,13 @@ header {
 
 .button_block {
     display: flex;
-    align-items: flex-end;
-    justify-content: end;
-    /*margin-left: 900px;*/
-    /*position: absolute;
-    right: 0;
-    bottom: 0;*/
+    height: 40px;
+    margin-left: 790px;
+    /*align-items: flex-end;*/
+    /*justify-content: end;*/
+    /*position: absolute;*/
+    /*right: 0;*/
+    /*bottom: 0;*/
 }
 
 .content {
@@ -276,19 +287,28 @@ header {
 .follow_title {
     font-weight: bold;
     margin-left: 150px;
+    width: 100px;
 }
 
 .post_icon,
 .post_name,
 .post_date {
     display: inline;
+    position: relative;
+}
+
+.post_date {
+    margin-left: auto;
+}
+
+.post_name {
+    width: 100px;
 }
 
 .post_content {
     margin-top: 10px;
     margin-left: 15px;
-    width: 75%;
-
+    width: 90%;
 }
 
 .profile_group {

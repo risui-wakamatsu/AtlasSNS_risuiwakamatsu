@@ -26,7 +26,6 @@
   </div>
 
   @if(Auth::user()->id==$post->user_id) <!--idとuser_idがあっている時のみ編集と削除の機能が使える-->
-
   <!--更新機能-->
   <div class="button_block">
     <div class="content">
@@ -52,7 +51,7 @@
     <form action="/post/update" method="post">
       <textarea name="upPost" class="modal_post"></textarea>
       <input type="hidden" name="id" class="modal_id" value="">
-      <input type="image" name="submit" src="./images/edit.png" alt="編集">
+      <input class="modal_btn" type="image" name="submit" src="./images/edit.png" alt="編集" width="35" height="35">
       {{csrf_field()}}
     </form>
     <a class="js-modal-close" href=""></a>

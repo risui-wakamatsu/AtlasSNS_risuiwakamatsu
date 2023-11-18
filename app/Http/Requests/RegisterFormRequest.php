@@ -57,7 +57,6 @@ class RegisterFormRequest extends FormRequest
         ];
     }
 
-
     public function messages() //エラーメッセージ
     {
         return [
@@ -77,7 +76,11 @@ class RegisterFormRequest extends FormRequest
             'password.min' => 'パスワードは8文字以上20文字以内の英数字で入力してください。',
             'password.max' => 'パスワードは8文字以上20文字以内の英数字で入力してください。',
             'password.regex' => 'パスワードは8文字以上20文字以内の英数字で入力してください。',
-            'password.confirmed' => 'パスワードが一致していません。'
+            'password.confirmed' => 'パスワードが一致していません。',
+
+            'bio.max' => '150文字以内で入力してください',
+
+            'icon_image.mimes' => '画像ファイル以外は不可です'
         ];
     }
 }

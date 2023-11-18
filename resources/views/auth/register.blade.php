@@ -12,7 +12,7 @@
   <h2 class="welcome">新規ユーザー登録</h2>
 
   @if($errors->any())
-  <div class="register-error">
+  <div class="register_error">
     <ul>
       @foreach($errors->all() as $error)
       <li>{{$error}}</li>

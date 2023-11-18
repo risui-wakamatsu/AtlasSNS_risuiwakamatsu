@@ -67,12 +67,6 @@ header {
     text-align: center;
 }*/
 
-.menu {
-    color: #727272;
-    text-decoration: none;
-    text-align: center;
-}
-
 /*モーダル
 /* 必要に応じて編集しご自身でSNS課題のレイアウトのようにカスタマイズしてください。 */
 .content {
@@ -302,7 +296,8 @@ header {
 }
 
 .post_name {
-    width: 100px;
+    display: inline-block;
+    width: 79%;
 }
 
 .post_content {
@@ -385,12 +380,13 @@ td {
 /*アコーディオンメニュー仮*/
 .dropmenu {
     width: 200px;
+    margin: 0 auto;
 }
 
 .dropmenu li {
     position: relative;
-    /*相対的　現在地を基準とする　absoluteとセット*/
     padding-top: 30px;
+    /*相対的　現在地を基準とする　absoluteとセット*/
 }
 
 .dropmenu li a {
@@ -415,8 +411,11 @@ td {
     /*transparentで要素を透明にする*/
 }
 
-.dropmenu li ul {
-    position: absolute;
+.menu {
+    color: #727272;
+    text-decoration: none;
+    text-align: center;
+    height: 40px;
 }
 
 .dropmenu li ul li {
@@ -455,4 +454,8 @@ td {
 
 .accordion_img {
     margin-top: 17px;
+}
+
+.update_error {
+    text-align: center;
 }

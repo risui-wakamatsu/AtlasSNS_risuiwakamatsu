@@ -5,8 +5,21 @@
 @section('content')
 <div class="container">
   <div class="update">
+
+
     {!! Form::open(['url' => '/profile/update','files' => true]) !!} <!--'files' => true：enctype属性のmultipart/form-data--><!--enctype属性：ファイルを送信する場合に必要になる-->
     @csrf
+    <!--エラー文-->
+    @if($errors->any())
+    <div class="update_error">
+      <ul>
+        @foreach($errors->all() as $error)
+        <li>{{$error}}</li>
+        @endforeach
+      </ul>
+    </div>
+    @endif
+
     {{Form::hidden('id',Auth::user()->id)}}
     <img class="update_icon" src="{{asset('storage/'.Auth::user()->images)}}" alt="アイコン" height="64" width="64">
     <div class="update_form">

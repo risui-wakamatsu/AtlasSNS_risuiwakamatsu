@@ -377,6 +377,17 @@ td {
     width: 130px;
 }
 
+
+.update_error {
+    text-align: center;
+}
+
+/*アコーディオンメニュー*/
+/*アコーディオンメニュー右のアイコン*/
+.accordion_img {
+    margin-top: 17px;
+}
+
 /*アコーディオンメニュー仮*/
 .dropmenu {
     width: 200px;
@@ -425,16 +436,19 @@ td {
     transition: .2s;
 }
 
+/*ドロップダウンした時に出てくるメニューのレイアウト*/
 .dropmenu li ul li a {
     border-top: 1px solid #dddddd;
     background: #ffffff;
     color: #333333;
 }
 
+/*ドロップダウンにメニューに出てくるメニューに三角が出ないようにする*/
 .dropmenu li ul li a:after {
     content: none;
 }
 
+/*名前横の三角の動き*/
 .dropmenu li:hover a:after {
     transform: rotate(180deg);
     transition: .1s;
@@ -446,16 +460,9 @@ td {
     width: 180px;
 }
 
+/*ドロップダウンした時に出てくるメニューをhoverした時のレイアウト*/
 .dropmenu li ul li a:hover {
     background: #00008b;
     color: #ffffff;
     transition: .3s;
-}
-
-.accordion_img {
-    margin-top: 17px;
-}
-
-.update_error {
-    text-align: center;
 }

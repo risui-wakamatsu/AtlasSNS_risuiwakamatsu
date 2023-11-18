@@ -378,9 +378,6 @@ td {
 }
 
 
-.update_error {
-    text-align: center;
-}
 
 /*アコーディオンメニュー*/
 /*アコーディオンメニュー右のアイコン*/
@@ -388,7 +385,6 @@ td {
     margin-top: 17px;
 }
 
-/*アコーディオンメニュー仮*/
 .dropmenu {
     width: 200px;
     margin: 0 auto;
@@ -396,7 +392,6 @@ td {
 
 .dropmenu li {
     position: relative;
-    padding-top: 30px;
     /*相対的　現在地を基準とする　absoluteとセット*/
 }
 
@@ -414,7 +409,7 @@ td {
     position: absolute;
     /**絶対位置指定要素　itemの場所を指定できる*/
     right: 60px;
-    top: 48px;
+    top: 16px;
     border-style: solid;
     border-width: 8px 5px 0 5px;
     /*矢印の元*/
@@ -465,4 +460,9 @@ td {
     background: #00008b;
     color: #ffffff;
     transition: .3s;
+}
+
+/*ドロップダウンされて出てくるメニュー*/
+ul {
+    padding-top: 30px;
 }

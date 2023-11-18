@@ -51,10 +51,10 @@
                 <!--アコーディオンメニュー-->
                 <ul class="dropmenu">
                     <li class="accordion"><a>{{Auth::user()->username}}　さん</a>
-                        <ul>
-                            <li class="menu_list"><a class="menu" href="/top">HOME</a></li>
-                            <li class="menu_list"><a class="menu" href="/profile">プロフィール編集</a></li>
-                            <li class="menu_list"><a class="menu" href="/logout">ログアウト</a></li>
+                        <ul class="menu_list">
+                            <li><a class="menu" href="/top">HOME</a></li>
+                            <li><a class="menu" href="/profile">プロフィール編集</a></li>
+                            <li><a class="menu" href="/logout">ログアウト</a></li>
                         </ul>
                     </li>
                 </ul>

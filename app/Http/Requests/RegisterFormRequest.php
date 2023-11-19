@@ -72,11 +72,16 @@ class RegisterFormRequest extends FormRequest
             'mail.max' => 'メールアドレスは5文字以上40文字以内で入力してください。',
             'mail.unique' => 'こちらのメールアドレスは登録済みです。',
 
-            'password.required' => 'パスワードは入力必須項です。',
+            'password.required' => 'パスワードは入力必須項目です。',
             'password.min' => 'パスワードは8文字以上20文字以内の英数字で入力してください。',
             'password.max' => 'パスワードは8文字以上20文字以内の英数字で入力してください。',
             'password.regex' => 'パスワードは8文字以上20文字以内の英数字で入力してください。',
             'password.confirmed' => 'パスワードが一致していません。',
+
+            'password_confirmation.required' => '確認用パスワードは入力必須項目です。',
+            'password_confirmation.min' => 'パスワードは8文字以上20文字以内の英数字で入力してください。',
+            'password_confirmation.max' => 'パスワードは8文字以上20文字以内の英数字で入力してください。',
+            'password_confirmation.regex' => 'パスワードは8文字以上20文字以内の英数字で入力してください。',
 
             'bio.max' => '150文字以内で入力してください',
 

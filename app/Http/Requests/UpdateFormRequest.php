@@ -7,7 +7,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RegisterFormRequest extends FormRequest
+class UpdateFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -30,37 +30,14 @@ class RegisterFormRequest extends FormRequest
             //記述方法：['検証する値'=>'検証ルール1 | 検証ルール2',]
             // もしくは、['検証する値'=>['検証ルール1', '検証ルール2'],]
             'username' => 'required|string|min:2|max:12',
-            'mail' => 'required|string|email|min:5|max:40|unique:users',
-            'password' => 'required|min:8|max:20|regex:/^[a-zA-Z0-9]+$/|confirmed',
-            'password_confirmation' => 'required|min:8|max:20|regex:/^[a-zA-Z0-9]+$/|',
+            'mail' => 'required|string|email|min:5|max:40|', //自分自身のメールアドレスは同じでOK,unique:users入れてしまうと指定カラムなのかで重複しないルールになってしまう
+            'password' => 'min:8|max:20|regex:/^[a-zA-Z0-9]+$/|confirmed',
+            'password_confirmation' => 'min:8|max:20|regex:/^[a-zA-Z0-9]+$/|',
             'bio' => 'max:150|nullable', //nullable:任意（nullでもOK）
-            'icon_image' => 'mimes:jpg,png,bmp,gif,svg|nullable', //アップロードできる拡張子指定
+            'images' => 'mimes:jpg,png,bmp,gif,svg|nullable', //アップロードできる拡張子指定
 
-
-            //required:必須項目
-            //string:文字列
-            //min,max:最小,最大
-            //email:メールアドレスか検証
-            //unique:テーブル名:指定したテーブルで重複がないか検証
-            //regex:正規表現:正規表現にマッチするか検証
-            //confirmed:_confirmationに入力されたものと一致する必要がある
         ];
     }
-
-    ///requestフォームが読み込まれた時点で上記のrulesメソッドが読み込まれているため下記のprofileUpdateは処理されない
-    //プロフィール編集用のrequestフォームを用意する（UpdateRequestForm作成済み）
-    //プロフィール編集機能のバリデーション
-    //public function profileUpdate()
-    //{
-    //return [
-    //'username' => 'required|string|min:2|max:12',
-    //'mail' => 'required|string|email|min:5|max:40|unique:users', //自分自身のメールアドレスは同じものでも良いようにする
-    //'password' => 'min:8|max:20|regex:/^[a-zA-Z0-9]+$/|confirmed',
-    //'password_confirmation' => 'min:8|max:20|regex:/^[a-zA-Z0-9]+$/|',
-    //'bio' => 'max:150|nullable', //nullable:任意（nullでもOK）
-    //'icon_image' => 'mimes:jpg,png,bmp,gif,svg|nullable', //アップロードできる拡張子指定
-    //];
-    //}
 
     public function messages() //エラーメッセージ
     {
@@ -84,13 +61,13 @@ class RegisterFormRequest extends FormRequest
             'password.confirmed' => 'パスワードが一致していません。',
 
             'password_confirmation.required' => '確認用パスワードは入力必須項目です。',
-            'password_confirmation.min' => 'パスワードは8文字以上20文字以内の英数字で入力してください。',
-            'password_confirmation.max' => 'パスワードは8文字以上20文字以内の英数字で入力してください。',
-            'password_confirmation.regex' => 'パスワードは8文字以上20文字以内の英数字で入力してください。',
+            'password_confirmation.min' => '確認用パスワードは8文字以上20文字以内の英数字で入力してください。',
+            'password_confirmation.max' => '確認用パスワードは8文字以上20文字以内の英数字で入力してください。',
+            'password_confirmation.regex' => '確認用パスワードは8文字以上20文字以内の英数字で入力してください。',
 
-            //'bio.max' => '紹介文は150文字以内で入力してください',
+            'bio.max' => '紹介文は150文字以内で入力してください。',
 
-            //'icon_image.mimes' => '画像ファイル以外は不可です'
+            'images.mimes' => '画像ファイル以外のアップロードは不可です。'
         ];
     }
 }

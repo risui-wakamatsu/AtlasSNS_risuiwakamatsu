@@ -8,7 +8,7 @@ use App\Post; //追加
 use Illuminate\Auth\Middleware\RequirePassword;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash; //ハッシュ化
-use App\Http\Requests\RegisterFormRequest; //クラスをuse宣言
+use App\Http\Requests\UpdateFormRequest; //クラスをuse宣言
 
 
 class UsersController extends Controller
@@ -60,7 +60,7 @@ class UsersController extends Controller
     }
 
     //プロフィール編集機能
-    public function updateProfile(RegisterFormRequest $request)
+    public function updateProfile(UpdateFormRequest $request)
     {
         $id = $request->input('id');
         $username = $request->input('username');

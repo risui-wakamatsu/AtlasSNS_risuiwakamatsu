@@ -24,7 +24,7 @@ class RegisterFormRequest extends FormRequest
      *
      * @return array
      */
-    public function rules() //適用させたいバリデーションのルールを記述
+    public function rules() //ユーザー登録用
     {
         return [
             //記述方法：['検証する値'=>'検証ルール1 | 検証ルール2',]
@@ -33,8 +33,8 @@ class RegisterFormRequest extends FormRequest
             'mail' => 'required|string|email|min:5|max:40|unique:users',
             'password' => 'required|min:8|max:20|regex:/^[a-zA-Z0-9]+$/|confirmed',
             'password_confirmation' => 'required|min:8|max:20|regex:/^[a-zA-Z0-9]+$/|',
-            'bio' => 'max:150|nullable', //nullable:任意（nullでもOK）
-            'icon_image' => 'mimes:jpg,png,bmp,gif,svg|nullable', //アップロードできる拡張子指定
+            //'bio' => 'max:150|nullable', //nullable:任意（nullでもOK）
+            //'icon_image' => 'mimes:jpg,png,bmp,gif,svg|nullable', //アップロードできる拡張子指定
 
 
             //required:必須項目

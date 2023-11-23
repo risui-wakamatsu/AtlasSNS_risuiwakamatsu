@@ -6,8 +6,10 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateFormRequest extends FormRequest
+
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,17 +26,17 @@ class UpdateFormRequest extends FormRequest
      *
      * @return array
      */
-    public function rules() //適用させたいバリデーションのルールを記述
+    public function rules() //プロフィール更新用
     {
         return [
             //記述方法：['検証する値'=>'検証ルール1 | 検証ルール2',]
             // もしくは、['検証する値'=>['検証ルール1', '検証ルール2'],]
             'username' => 'required|string|min:2|max:12',
-            'mail' => 'required|string|email|min:5|max:40|', //自分自身のメールアドレスは同じでOK,unique:users入れてしまうと指定カラムなのかで重複しないルールになってしまう
+            'mail' => 'required|string|email|min:5|max:40|unique:users', //自分自身のメールアドレスは同じでOK,unique:users入れてしまうと指定カラムなのかで重複しないルールになってしまう
             'password' => 'min:8|max:20|regex:/^[a-zA-Z0-9]+$/|confirmed',
             'password_confirmation' => 'min:8|max:20|regex:/^[a-zA-Z0-9]+$/|',
             'bio' => 'max:150|nullable', //nullable:任意（nullでもOK）
-            'images' => 'mimes:jpg,png,bmp,gif,svg|nullable', //アップロードできる拡張子指定
+            'images' => 'mimes:jpeg,png,bmp,gif,svg|nullable', //アップロードできる拡張子指定
 
         ];
     }

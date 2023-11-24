@@ -7,6 +7,10 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use App\User; //追加
+use Illuminate\Support\Facades\Auth;
+
+
 
 class UpdateFormRequest extends FormRequest
 
@@ -32,7 +36,8 @@ class UpdateFormRequest extends FormRequest
             //記述方法：['検証する値'=>'検証ルール1 | 検証ルール2',]
             // もしくは、['検証する値'=>['検証ルール1', '検証ルール2'],]
             'username' => 'required|string|min:2|max:12',
-            'mail' => 'required|string|email|min:5|max:40|unique:users', //自分自身のメールアドレスは同じでOK,unique:users入れてしまうと指定カラムなのかで重複しないルールになってしまう
+            'mail' => ['required', 'string', 'email', 'min:5', 'max:40', Rule::unique('users')->ignore(Auth::id())], //自分自身のメールアドレスは同じでOK,unique:users入れてしまうと指定カラムなのかで重複しないルールになってしまう
+            //Ruleファサードとignoreメソッド：uniqueを適用するが、Auth::id()（ログインしているユーザー）のメールアドレスはOKにする
             'password' => 'min:8|max:20|regex:/^[a-zA-Z0-9]+$/|confirmed',
             'password_confirmation' => 'min:8|max:20|regex:/^[a-zA-Z0-9]+$/|',
             'bio' => 'max:150|nullable', //nullable:任意（nullでもOK）
